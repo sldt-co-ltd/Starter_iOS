@@ -1,0 +1,435 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)
+// swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ChannelIO
+import AVFoundation
+import AVKit
+import AudioToolbox
+@_exported import ChannelIO
+import Combine
+import CommonCrypto
+import CoreFoundation
+import CoreGraphics
+import CoreTelephony
+import Darwin
+import Dispatch
+import Dispatch/*.DispatchTimeInterval*/
+import Foundation
+import Foundation/*.BlockOperation*/
+import Foundation/*.Data*/
+import Foundation/*.Date*/
+import Foundation/*.DateFormatter*/
+import Foundation/*.HTTPURLResponse*/
+import Foundation/*.IndexPath*/
+import Foundation/*.JSONSerialization*/
+import Foundation/*.NSCopying*/
+import Foundation/*.NSError*/
+import Foundation/*.NSLock*/
+import Foundation/*.NSNull*/
+import Foundation/*.NSNumber*/
+import Foundation/*.NSObject*/
+import Foundation/*.NSRecursiveLock*/
+import Foundation/*.NSURLErrorCancelled*/
+import Foundation/*.NSURLErrorDomain*/
+import Foundation/*.NSValue*/
+import Foundation/*.Notification*/
+import Foundation/*.NotificationCenter*/
+import Foundation/*.Operation*/
+import Foundation/*.OperationQueue*/
+import Foundation/*.Thread*/
+import Foundation/*.TimeInterval*/
+import Foundation/*.URL*/
+import Foundation/*.URLRequest*/
+import Foundation/*.URLResponse*/
+import Foundation/*.URLSession*/
+import Foundation/*.arc4random*/
+import Foundation/*.objc_getAssociatedObject*/
+import Foundation/*.objc_setAssociatedObject*/
+import MessageUI
+import MobileCoreServices
+import Foundation.NSObject
+import Photos
+import PhotosUI
+import QuartzCore
+import SafariServices
+import Security
+import Swift
+import SystemConfiguration
+import UIKit.UIGeometry
+import UIKit
+import UserNotifications
+import WebKit
+import zlib
+extension ChannelIO {
+  @_inheritsConvenienceInitializers @objc final public class CrossPlatformUtils : ObjectiveC.NSObject {
+    @objc final public class func openBrowser(url: Foundation.URL?)
+    @objc override dynamic public init()
+    @objc deinit
+  }
+}
+@objc public protocol ChannelPluginDelegate {
+  @available(*, deprecated, renamed: "onBadgeChanged")
+  @objc optional func onChangeBadge(count: Swift.Int)
+  @available(*, deprecated, renamed: "onUrlClicked")
+  @objc optional func onClickChatLink(url: Foundation.URL) -> Swift.Bool
+  @available(*, deprecated, renamed: "onShowMessenger")
+  @objc optional func willShowMessenger()
+  @available(*, deprecated, renamed: "onHideMessenger")
+  @objc optional func willHideMessenger()
+  @available(*, deprecated, renamed: "onPopupDataReceived")
+  @objc optional func onReceivePush(event: ChannelIO.PushEvent)
+  @available(*, deprecated, renamed: "onProfileChanged")
+  @objc optional func onChangeProfile(key: Swift.String, value: Any?)
+  @objc optional func onShowMessenger()
+  @objc optional func onHideMessenger()
+  @objc optional func onChatCreated(chatId: Swift.String)
+  @objc optional func onBadgeChanged(count: Swift.Int)
+  @objc optional func onProfileChanged(key: Swift.String, value: Any?)
+  @objc optional func onUrlClicked(url: Foundation.URL) -> Swift.Bool
+  @objc optional func onPopupDataReceived(event: ChannelIO.PopupData)
+}
+@_inheritsConvenienceInitializers @objc final public class ChannelIO : ObjectiveC.NSObject {
+  @objc weak public static var delegate: ChannelIO.ChannelPluginDelegate?
+  @objc public static var isBooted: Swift.Bool {
+    @objc get
+  }
+  @available(*, deprecated)
+  @objc public static var canShowLauncher: Swift.Bool {
+    @objc get
+  }
+  @objc final public class func initialize(_ application: UIKit.UIApplication)
+  @available(iOS 13.0, *)
+  @objc final public class func initializeWindow(with scene: UIKit.UIWindowScene) -> UIKit.UIWindow?
+  @available(*, deprecated, renamed: "boot(config:)")
+  @objc final public class func boot(with settings: ChannelIO.ChannelPluginSettings, profile: ChannelIO.Profile? = nil, completion: ((ChannelIO.ChannelPluginCompletionStatus, ChannelIO.User?) -> Swift.Void)? = nil)
+  @objc final public class func boot(with config: ChannelIO.BootConfig, completion: ((ChannelIO.BootStatus, ChannelIO.User?) -> Swift.Void)? = nil)
+  @objc final public class func initPushToken(deviceToken: Foundation.Data)
+  @objc final public class func initPushToken(tokenString: Swift.String)
+  @objc final public class func setDebugMode(with debug: Swift.Bool)
+  @objc final public class func shutdown()
+  @objc final public class func sleep()
+  @available(*, deprecated, renamed: "showChannelButton")
+  @objc final public class func show(animated: Swift.Bool)
+  @objc final public class func showChannelButton()
+  @available(*, deprecated, renamed: "hideChannelButton")
+  @objc final public class func hide(animated: Swift.Bool)
+  @objc final public class func hideChannelButton()
+  @available(*, deprecated, renamed: "showMessenger")
+  @objc final public class func open(animated: Swift.Bool)
+  @objc final public class func showMessenger()
+  @available(*, deprecated, renamed: "hideMessenger")
+  @objc final public class func close(animated: Swift.Bool, completion: (() -> Swift.Void)? = nil)
+  @objc final public class func hideMessenger()
+  @available(*, deprecated, renamed: "openChat(chatId:message:animated:)")
+  @objc final public class func openChat(with chatId: Swift.String? = nil, animated: Swift.Bool)
+  @objc final public class func openChat(with chatId: Swift.String?, message: Swift.String?)
+  @objc final public class func updateUser(_ profile: [Swift.String : Any], completion: ((Swift.Bool, ChannelIO.User?) -> Swift.Void)? = nil)
+  final public class func updateUser(with profile: [Swift.String : Any?], completion: ((Swift.Bool, ChannelIO.User?) -> Swift.Void)? = nil)
+  @objc final public class func updateUser(param: ChannelIO.UpdateUserParam, completion: ((Swift.Error?, ChannelIO.User?) -> Swift.Void)? = nil)
+  @objc final public class func addTags(_ tags: [Swift.String], completion: ((Swift.Error?, ChannelIO.User?) -> Swift.Void)? = nil)
+  @objc final public class func removeTags(_ tags: [Swift.String], completion: ((Swift.Error?, ChannelIO.User?) -> Swift.Void)? = nil)
+  @objc final public class func track(eventName: Swift.String, eventProperty: [Swift.String : Any]? = nil)
+  @objc final public class func isChannelPushNotification(_ userInfo: [Swift.AnyHashable : Any]) -> Swift.Bool
+  @available(*, deprecated, renamed: "receivePushNotification")
+  @objc final public class func handlePushNotification(_ userInfo: [Swift.AnyHashable : Any], completion: (() -> Swift.Void)? = nil)
+  @objc final public class func receivePushNotification(_ userInfo: [Swift.AnyHashable : Any], completion: (() -> Swift.Void)? = nil)
+  @objc final public class func storePushNotification(_ userInfo: [Swift.AnyHashable : Any])
+  @objc final public class func hasStoredPushNotification() -> Swift.Bool
+  @objc final public class func openStoredPushNotification()
+  @objc final public class func setPage(_ page: Swift.String?)
+  @objc final public class func resetPage()
+  @objc override dynamic public init()
+  @objc deinit
+}
+public typealias ChannelProfile = ChannelIO.Profile
+@_inheritsConvenienceInitializers @objc public class Profile : ObjectiveC.NSObject, Foundation.NSCoding {
+  @objc override dynamic public init()
+  @objc public init(name: Swift.String?, avatarUrl: Swift.String?, mobileNumber: Swift.String?, email: Swift.String?)
+  @objc required convenience public init(coder aDecoder: Foundation.NSCoder)
+  @objc public func encode(with aCoder: Foundation.NSCoder)
+  @discardableResult
+  @objc public func set(name: Swift.String) -> ChannelIO.Profile
+  @discardableResult
+  @objc public func set(avatarUrl: Swift.String) -> ChannelIO.Profile
+  @discardableResult
+  @objc public func set(mobileNumber: Swift.String) -> ChannelIO.Profile
+  @discardableResult
+  @objc public func set(email: Swift.String) -> ChannelIO.Profile
+  @discardableResult
+  @objc public func set(propertyKey: Swift.String, value: Swift.AnyObject?) -> ChannelIO.Profile
+  @objc deinit
+}
+public typealias ChannelPopupData = ChannelIO.PopupData
+public typealias ChannelUser = ChannelIO.User
+@_hasMissingDesignatedInitializers @available(*, deprecated, renamed: "PopupData")
+@objc public class PushEvent : ObjectiveC.NSObject {
+  @objc final public let chatId: Swift.String
+  @objc final public let message: Swift.String
+  @objc final public let senderName: Swift.String
+  @objc final public let senderAvatarUrl: Swift.String
+  @objc public func toJson() -> Swift.Dictionary<Swift.String, Any>
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class PopupData : ObjectiveC.NSObject {
+  @objc final public let chatId: Swift.String
+  @objc final public let message: Swift.String
+  @objc final public let name: Swift.String
+  @objc final public let avatarUrl: Swift.String
+  @objc public func toJson() -> Swift.Dictionary<Swift.String, Any>
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class User : ObjectiveC.NSObject {
+  @objc final public let id: Swift.String
+  @objc final public let memberId: Swift.String
+  @objc final public let name: Swift.String
+  @objc final public let avatarUrl: Swift.String?
+  @objc final public let profile: [Swift.String : Any]?
+  @objc final public let alert: Swift.Int
+  @objc final public let tags: [Swift.String]?
+  @objc final public let language: Swift.String?
+  @objc final public let unsubscribed: Swift.Bool
+  @objc public func toJson() -> Swift.Dictionary<Swift.String, Any>
+  @objc override dynamic public init()
+  @objc deinit
+}
+@available(*, deprecated, renamed: "ChannelButtonPosition")
+@objc public enum LauncherPosition : Swift.Int {
+  case right
+  case left
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @available(*, deprecated, renamed: "ChannelButtonOption")
+@objc public class LauncherConfig : ObjectiveC.NSObject, Foundation.NSCoding {
+  @objc public var position: ChannelIO.LauncherPosition
+  @objc public var xMargin: Swift.Float
+  @objc public var yMargin: Swift.Float
+  @objc override dynamic public init()
+  @objc public init(position: ChannelIO.LauncherPosition, xMargin: Swift.Float, yMargin: Swift.Float)
+  @objc required convenience public init(coder aDecoder: Foundation.NSCoder)
+  @objc public func encode(with aCoder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc public enum ChannelButtonPosition : Swift.Int {
+  case right
+  case left
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class ChannelButtonOption : ObjectiveC.NSObject, Foundation.NSCoding {
+  @objc public var position: ChannelIO.ChannelButtonPosition
+  @objc public var xMargin: Swift.Float
+  @objc public var yMargin: Swift.Float
+  @objc override dynamic public init()
+  @objc public init(position: ChannelIO.ChannelButtonPosition, xMargin: Swift.Float, yMargin: Swift.Float)
+  @objc required convenience public init(coder aDecoder: Foundation.NSCoder)
+  @objc public func encode(with aCoder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc public enum ChannelStage : Swift.Int {
+  case development
+  case staging
+  case production
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @available(*, deprecated, renamed: "BootConfing")
+@objc public class ChannelPluginSettings : ObjectiveC.NSObject, Foundation.NSCoding {
+  @objc public var pluginKey: Swift.String
+  @objc public var memberId: Swift.String?
+  @objc public var memberHash: Swift.String?
+  @objc public var debugMode: Swift.Bool
+  @objc public var launcherConfig: ChannelIO.LauncherConfig?
+  @objc public var hideDefaultInAppPush: Swift.Bool
+  @objc public var enabledTrackDefaultEvent: Swift.Bool
+  @objc public var language: ChannelIO.CHLocale {
+    @objc get
+    @objc set
+  }
+  @objc public var stage: ChannelIO.ChannelStage
+  @objc override dynamic public init()
+  @objc public init(pluginKey: Swift.String, memberId: Swift.String? = nil, memberHash: Swift.String? = nil, debugMode: Swift.Bool = false, launcherConfig: ChannelIO.LauncherConfig? = nil, hideDefaultInAppPush: Swift.Bool = false, enabledTrackDefaultEvent: Swift.Bool = true, language: ChannelIO.CHLocale = .device)
+  @objc required convenience public init(coder aDecoder: Foundation.NSCoder)
+  @objc public func encode(with aCoder: Foundation.NSCoder)
+  @discardableResult
+  @objc public func set(memberId: Swift.String?) -> ChannelIO.ChannelPluginSettings
+  @discardableResult
+  @objc public func set(memberHash: Swift.String?) -> ChannelIO.ChannelPluginSettings
+  @discardableResult
+  @objc public func set(pluginKey: Swift.String) -> ChannelIO.ChannelPluginSettings
+  @discardableResult
+  @objc public func set(debugMode: Swift.Bool) -> ChannelIO.ChannelPluginSettings
+  @discardableResult
+  @objc public func set(launcherConfig: ChannelIO.LauncherConfig?) -> ChannelIO.ChannelPluginSettings
+  @discardableResult
+  @objc public func set(hideDefaultInAppPush: Swift.Bool) -> ChannelIO.ChannelPluginSettings
+  @discardableResult
+  @objc public func set(enabledTrackDefaultEvent: Swift.Bool) -> ChannelIO.ChannelPluginSettings
+  @discardableResult
+  @objc public func set(language: ChannelIO.CHLocale) -> ChannelIO.ChannelPluginSettings
+  @discardableResult
+  @objc public func set(unsubscribed: Swift.Bool) -> ChannelIO.ChannelPluginSettings
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class BootConfig : ObjectiveC.NSObject, Foundation.NSCoding {
+  @objc public var pluginKey: Swift.String
+  @objc public var memberId: Swift.String?
+  @objc public var memberHash: Swift.String?
+  @objc public var profile: ChannelIO.Profile?
+  @objc public var channelButtonOption: ChannelIO.ChannelButtonOption?
+  @objc public var hidePopup: Swift.Bool
+  @objc public var trackDefaultEvent: Swift.Bool
+  @objc public var language: ChannelIO.LanguageOption {
+    @objc get
+    @objc set
+  }
+  @objc public var stage: ChannelIO.ChannelStage
+  @objc override dynamic public init()
+  @objc public init(pluginKey: Swift.String, memberId: Swift.String? = nil, memberHash: Swift.String? = nil, profile: ChannelIO.Profile? = nil, channelButtonOption: ChannelIO.ChannelButtonOption? = nil, hidePopup: Swift.Bool = false, trackDefaultEvent: Swift.Bool = true, language: ChannelIO.LanguageOption = .device, stage: ChannelIO.ChannelStage = .production)
+  @objc required convenience public init(coder aDecoder: Foundation.NSCoder)
+  @objc public func encode(with aCoder: Foundation.NSCoder)
+  @discardableResult
+  @objc public func set(memberId: Swift.String?) -> ChannelIO.BootConfig
+  @discardableResult
+  @objc public func set(memberHash: Swift.String?) -> ChannelIO.BootConfig
+  @discardableResult
+  @objc public func set(pluginKey: Swift.String) -> ChannelIO.BootConfig
+  @discardableResult
+  @objc public func set(channelButtonOption: ChannelIO.ChannelButtonOption?) -> ChannelIO.BootConfig
+  @discardableResult
+  @objc public func set(hidePopup: Swift.Bool) -> ChannelIO.BootConfig
+  @discardableResult
+  @objc public func set(trackDefaultEvent: Swift.Bool) -> ChannelIO.BootConfig
+  @discardableResult
+  @objc public func set(language: ChannelIO.LanguageOption) -> ChannelIO.BootConfig
+  @discardableResult
+  @objc public func set(unsubscribed: Swift.Bool) -> ChannelIO.BootConfig
+  @objc deinit
+}
+extension UIPageControl {
+  @objc override dynamic open func sizeToFit()
+}
+infix operator <- : DefaultPrecedence
+infix operator >>>> : DefaultPrecedence
+public typealias UpdateUserParam = [Swift.String : Any]
+public class UpdateUserParamBuilder {
+  public init()
+  @discardableResult
+  public func with(profile: [Swift.String : Any?]?) -> ChannelIO.UpdateUserParamBuilder
+  @discardableResult
+  public func with(profileOnce: [Swift.String : Any?]?) -> ChannelIO.UpdateUserParamBuilder
+  @discardableResult
+  public func with(tags: [Swift.String]?) -> ChannelIO.UpdateUserParamBuilder
+  @discardableResult
+  public func with(language: ChannelIO.LanguageOption) -> ChannelIO.UpdateUserParamBuilder
+  public func build() -> ChannelIO.UpdateUserParam
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class UpdateUserParamObjcBuilder : ObjectiveC.NSObject {
+  @discardableResult
+  @objc public func with(profileKey: Swift.String, value: Swift.AnyObject?) -> ChannelIO.UpdateUserParamObjcBuilder
+  @discardableResult
+  @objc public func setProfileNil() -> ChannelIO.UpdateUserParamObjcBuilder
+  @discardableResult
+  @objc public func with(profileOnceKey: Swift.String, value: Swift.AnyObject?) -> ChannelIO.UpdateUserParamObjcBuilder
+  @discardableResult
+  @objc public func setProfileOnceNil() -> ChannelIO.UpdateUserParamObjcBuilder
+  @discardableResult
+  @objc public func with(tags: [Swift.String]?) -> ChannelIO.UpdateUserParamObjcBuilder
+  @discardableResult
+  @objc public func with(language: ChannelIO.LanguageOption) -> ChannelIO.UpdateUserParamObjcBuilder
+  @objc public func build() -> ChannelIO.UpdateUserParam
+  @objc override dynamic public init()
+  @objc deinit
+}
+infix operator >>> : BitwiseShiftPrecedence
+@objc public enum CHLocale : Swift.Int {
+  case english
+  case korean
+  case japanese
+  case device
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum LanguageOption : Swift.Int {
+  case english
+  case korean
+  case japanese
+  case device
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@available(*, deprecated, renamed: "BootStatus")
+@objc public enum ChannelPluginCompletionStatus : Swift.Int {
+  case success
+  case notInitialized
+  case networkTimeout
+  case notAvailableVersion
+  case serviceUnderConstruction
+  case requirePayment
+  case accessDenied
+  case unknown
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum BootStatus : Swift.Int {
+  case success
+  case notInitialized
+  case networkTimeout
+  case notAvailableVersion
+  case serviceUnderConstruction
+  case requirePayment
+  case accessDenied
+  case unknown
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@available(*, deprecated, renamed: "ChannelButtonPosition")
+extension ChannelIO.LauncherPosition : Swift.Equatable {}
+@available(*, deprecated, renamed: "ChannelButtonPosition")
+extension ChannelIO.LauncherPosition : Swift.Hashable {}
+@available(*, deprecated, renamed: "ChannelButtonPosition")
+extension ChannelIO.LauncherPosition : Swift.RawRepresentable {}
+extension ChannelIO.ChannelButtonPosition : Swift.Equatable {}
+extension ChannelIO.ChannelButtonPosition : Swift.Hashable {}
+extension ChannelIO.ChannelButtonPosition : Swift.RawRepresentable {}
+extension ChannelIO.ChannelStage : Swift.Equatable {}
+extension ChannelIO.ChannelStage : Swift.Hashable {}
+extension ChannelIO.ChannelStage : Swift.RawRepresentable {}
+extension ChannelIO.CHLocale : Swift.Equatable {}
+extension ChannelIO.CHLocale : Swift.Hashable {}
+extension ChannelIO.CHLocale : Swift.RawRepresentable {}
+extension ChannelIO.LanguageOption : Swift.Equatable {}
+extension ChannelIO.LanguageOption : Swift.Hashable {}
+extension ChannelIO.LanguageOption : Swift.RawRepresentable {}
+@available(*, deprecated, renamed: "BootStatus")
+extension ChannelIO.ChannelPluginCompletionStatus : Swift.Equatable {}
+@available(*, deprecated, renamed: "BootStatus")
+extension ChannelIO.ChannelPluginCompletionStatus : Swift.Hashable {}
+@available(*, deprecated, renamed: "BootStatus")
+extension ChannelIO.ChannelPluginCompletionStatus : Swift.RawRepresentable {}
+extension ChannelIO.BootStatus : Swift.Equatable {}
+extension ChannelIO.BootStatus : Swift.Hashable {}
+extension ChannelIO.BootStatus : Swift.RawRepresentable {}

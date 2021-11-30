@@ -109,14 +109,14 @@
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
-		<key>Pods-Starter-StarterUITests.xcscheme</key>
+		<key>Pods-StarterProject-StarterUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>18</integer>
 		</dict>
-		<key>Pods-Starter.xcscheme</key>
+		<key>Pods-StarterProject.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

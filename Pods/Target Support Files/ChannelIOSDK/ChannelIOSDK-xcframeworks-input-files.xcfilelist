@@ -1,2 +1,2 @@
 ${PODS_ROOT}/Target Support Files/ChannelIOSDK/ChannelIOSDK-xcframeworks.sh
-${PODS_ROOT}/ChannelIOSDK/ChannelIO/ChannelIO.xcframework
+${PODS_ROOT}/ChannelIOSDK/ChannelIOFront/ChannelIOFront.xcframework

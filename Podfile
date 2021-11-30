@@ -1,6 +1,6 @@
-platform :ios, '13.0'
+platform :ios, '14.0'
 
-target 'Starter' do
+target 'StarterProject' do
   use_frameworks!
 
   #UI

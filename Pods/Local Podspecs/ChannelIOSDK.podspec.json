@@ -1,12 +1,12 @@
 {
   "name": "ChannelIOSDK",
-  "version": "9.0.1",
+  "version": "9.1.2",
   "summary": "Channel plugin for iOS",
   "description": "Channel Plugin for iOS",
   "homepage": "https://www.channel.io",
   "license": {
     "type": "SDK",
-    "file": "ChannelIO/LICENSE"
+    "file": "ChannelIOFront/LICENSE"
   },
   "authors": {
     "Channel Corp.": "eng@channel.io",
@@ -14,15 +14,15 @@
     "Jin": "jin@channel.io"
   },
   "source": {
-    "http": "https://mobile-static.channel.io/ios/9.0.1/cocoapod-xcframework.zip"
+    "http": "https://mobile-static.channel.io/ios/9.1.2/cocoapod-xcframework.zip"
   },
   "requires_arc": true,
   "platforms": {
     "ios": "11.0"
   },
-  "preserve_paths": "ChannelIO/ChannelIO.xcframework, ChannelIO/ChannelIO.dSYMs/ChannelIO.framework.ios-arm64_armv7.dSYM, ChannelIO/ChannelIO.dSYMs/ChannelIO.framework.ios-i386_x86_64-simulator.dSYM",
+  "preserve_paths": "ChannelIOFront/ChannelIOFront.xcframework, ChannelIOFront/ChannelIOFront.dSYMs/ChannelIOFront.framework.ios-arm64_armv7.dSYM, ChannelIOFront/ChannelIOFront.dSYMs/ChannelIOFront.framework.ios-i386_x86_64-simulator.dSYM",
   "swift_versions": "5.0",
-  "vendored_frameworks": "ChannelIO/ChannelIO.xcframework",
+  "vendored_frameworks": "ChannelIOFront/ChannelIOFront.xcframework",
   "xcconfig": {
     "FRAMEWORK_SEARCH_PATHS": "\"$(PODS_ROOT)/ChannelIOSDK/**\""
   },
